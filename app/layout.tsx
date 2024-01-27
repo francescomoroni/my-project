@@ -15,9 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <TopBar/>
-      <body>{children}</body>
-      <Footer/>
+      <body>
+        <TopBar/>
+        {children}
+        <Footer/>
+        </body>
     </html>
   )
 }
