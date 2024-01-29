@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8 mx-4">
         {oggetti.map((oggetto, key) => {
           return (
             <Link href={`/pages/works/work/${oggetto.link}`} key={key} className="w-full">
