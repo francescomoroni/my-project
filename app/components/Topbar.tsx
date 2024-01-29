@@ -1,39 +1,51 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import React, { useState } from "react";
+import { usePathname } from 'next/navigation'
+
 
 const Topbar = () => {
-    const [show, setShow] = useState(false);
+    const pathname = usePathname();
+    const textColor = pathname === "/" ? "text-white" : "text-black";
+
+    const [showMenu, setShowMenu] = useState(false);
 
     const handleShow = () => {
-        setShow(!show);
+        setShowMenu(!showMenu);
     }
 
     return (
         <>
+            {/* Mobile */}
             <div className="md:hidden flex mx-10 py-8 items-center justify-between text-xl uppercase">
-                <a href="#" className="hover:text-black/80 transition-all">LOGO SIMO ©</a>
-                <p onClick={handleShow} className={` ${show ? "hidden" : "text-5xl flex"} `} >+</p>
+                <p onClick={handleShow} className={` ${showMenu ? "hidden" : ` ${textColor} text-5xl flex cursor-pointer`} `} >+</p>
+                <p onClick={handleShow} className={` ${showMenu ? ` ${textColor} text-5xl flex cursor-pointer` : "hidden"} `}>-</p>
                 
-                <p onClick={handleShow} className={` ${show ? "text-5xl flex " : "hidden"} `}>-</p>
-
-                {/* <a href="/works" className="hover:text-black/80 transition-all">Works</a>
-                <a href="/contacts" className="hover:text-black/80 transition-all">Contacts</a>
-                <a href="/about" className="hover:text-black/80 transition-all">About</a> */}
+                <div className="w-1/2 flex justify-end">
+                <Link href="/" className=" transition-all">
+                    {pathname === "/" ?
+                        <img src="/logo_white.png" alt="logo" className="w-24" />
+                        :
+                        <img src="/logo.png" alt="logo" className="w-24" />}
+                </Link>
             </div>
-            
-            {show &&
-                <div className="md:hidden flex flex-col mx-10 py-8 items-center justify-between text-xl uppercase">
-                    <a href="/works" className="hover:text-black/80 transition-all">Works</a>
-                    <a href="/contacts" className="hover:text-black/80 transition-all">Contacts</a>
-                    <a href="/about" className="hover:text-black/80 transition-all">About</a>
+                
+            </div>
+
+            {showMenu &&
+                <div className="md:hidden flex flex-col mx-10 py-8 items-center justify-between text-2xl uppercase space-y-6">
+                    <Link href="/pages/works" className={`hover:${textColor}/80 transition-all ${textColor}`}>Works</Link>
+                    <Link href="/contacts" className={`hover:${textColor}/80 transition-all ${textColor}`}>Contacts</Link>
+                    <Link href="/pages/about" className={`hover:${textColor}/80 transition-all ${textColor}`}>About</Link>
                 </div>
             }
 
-            <div className="hidden md:flex mx-auto container  w-100 py-8 items-center justify-between text-xl uppercase">
-                <a href="#" className="hover:text-black/80 transition-all">SIMO YANG ©</a>
-                <a href="/works" className="hover:text-black/80 transition-all">Works</a>
-                <a href="/contacts" className="hover:text-black/80 transition-all">Contacts</a>
-                <a href="/about" className="hover:text-black/80 transition-all">About</a>
+            {/* Desktop */}
+            <div className="hidden md:flex px-10 z-10 w-1/2 py-8 items-center justify-between text-xl uppercase">
+                <Link href="/" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Home</Link>
+                <Link href="/pages/works" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Works</Link>
+                <Link href="/pages/contacts" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Contacts</Link>
+                <Link href="/pages/about" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>About</Link>
             </div>
         </>
     );

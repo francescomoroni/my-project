@@ -1,102 +1,66 @@
+'use client'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Topbar from "./components/Topbar";
+import Footer from "./components/Footer";
+
 export default function Home() {
-  const oggetti = [
-    {
-      testo: "Carhartt — Yoji Tokuyoshi",
-      src: "https://www.c41.eu/wp-content/uploads/2023/12/000000010001.jpg"
-    },
-    {
-      testo: "Fornasetti — Christmas 23",
-      src: "https://www.c41.eu/wp-content/uploads/2023/12/AS-FORNASETTI-4-033.jpeg"
-    },
-    {
-      testo: "FUERA — MARIPOSA",
-      src: "https://www.c41.eu/wp-content/uploads/2023/11/Comp-10490.jpg"
-    },
-    {
-      testo: "Colorobbia — The shades of water",
-      src: "https://www.c41.eu/wp-content/uploads/2023/10/colorobbia___shades_of_water___filippo_raineri_dc-1080p1747.jpg"
-    },
-    {
-      testo: "Adidas — FW23",
-      src: "https://www.c41.eu/wp-content/uploads/2023/09/ADIDAS_60-_c411373.jpg"
-    },
-    {
-      testo: "Pinoquo",
-      src: "https://www.c41.eu/wp-content/uploads/2023/09/Pinoquo.jpg"
-    },
-    {
-      testo: "Bottega Veneta — Craft in Motion",
-      src: "https://www.c41.eu/wp-content/uploads/2023/09/Thumbnail.jpg"
-    },
-    {
-      testo: "Choco Hoax",
-      src: "https://www.c41.eu/wp-content/uploads/2023/09/Screenshot-2023-09-15-at-14.49.42-copy.jpg"
-    },
-    {
-      testo: "Sunglass hut — Summer23",
-      src: "https://www.c41.eu/wp-content/uploads/2023/05/sunglasshut_thumbanail.jpg"
-    },
-    {
-      testo: "Kokke — The art of Sitting",
-      src: "https://www.c41.eu/wp-content/uploads/2020/05/01.jpg"
-    },
-    {
-      testo: "Fornasetti — The Syntax of Making",
-      src: "https://www.c41.eu/wp-content/uploads/2023/05/FORNASETTI_GIARDINO_1920x1080_LOGO_1555.jpg"
-    },
-    {
-      testo: "Formafantasma x Euroluce 2023 — Aurore",
-      src: "https://www.c41.eu/wp-content/uploads/2023/05/caizzi_aurore_euroluce_formafantasma_009.jpeg"
-    },
-    {
-      testo: "Adidas — New Shifted Generation⁣",
-      src: "https://www.c41.eu/wp-content/uploads/2023/04/thumbnail.jpg"
-    },
-    {
-      testo: "Tacchini — Flock",
-      src: "https://www.c41.eu/wp-content/uploads/2023/04/Tacchini_Flock_Trailer_ONLINE_10592.jpg"
-    },
-    {
-      testo: "Rimowa — Nylon backpack",
-      src: "https://www.c41.eu/wp-content/uploads/2023/04/5x4_101_Rimowa-ARCH-15s192.jpg"
-    },
-    {
-      testo: "THE NORTH FACE X ZALANDO — HERITAGE COLLECTION",
-      src: "https://www.c41.eu/wp-content/uploads/2023/03/012_Zalando_Heritage_1746.jpg"
-    },
-    {
-      testo: "RAY-BAN — META",
-      src: "https://www.c41.eu/wp-content/uploads/2023/03/9.jpg"
-    },
-    {
-      testo: "DR. MARTENS — NU SOULS",
-      src: "https://www.c41.eu/wp-content/uploads/2023/03/DR-MARTENS-ONLINE.00_00_14_22.Immagine004.jpg"
-    },
-    {
-      testo: "THE NORTH FACE — FLEECES",
-      src: "https://www.c41.eu/wp-content/uploads/2023/02/TNF_FLEECES-PROJECT2220.jpg"
-    },
-    {
-      testo: "C41 x LC23 — Basic Collection",
-      src: "https://www.c41.eu/wp-content/uploads/2023/01/000000190015-copia-2.jpg"
-    }
+
+  const videos = [
+    "titolo 1 video e descrizione",
+    "titolo 2 video e descrizione",
+    "titolo 3 video e descrizione",
   ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  }
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 mx-4">
-        {oggetti.map((oggetto, key) => {
-          return (
-            <div key={key} className="w-full">
-              <img className="transition cursor-pointer object-cover w-full aspect-square hover:shadow-lg" src={oggetto.src} alt="" />
-              <p className="uppercase pt-4 md:pt-8 pb-12 cursor-pointer md:text-xl md:pb-24">{oggetto.testo}</p>
-            </div>
-          )
-        }
-        )}
+      {/* Header */}
+
+      <div className="fixed z-10 w-full">
+        <Topbar />
+      </div>
+
+      {/* Video Centrale */}
+      <div className="relative h-screen w-screen bg-gray-500">
+        <video onClick={nextSlide} autoPlay muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>
+      </div>
+
+      {/* Titolo video */}
+      <p onClick={nextSlide} className="fixed right-10 top-1/2 text-white text-2xl ">{videos[currentImageIndex]}</p>
+
+      {/* Footer */}
+      <div className="w-full fixed bottom-0">
+        <Footer />
       </div>
 
     </>
-
-  )
+  );
 }
+
+
+{/* <iframe
+          title="Vimeo Video"
+          src={`https://player.vimeo.com/video/${videos[currentImageIndex]}?autoplay=1&loop=1&muted=1&controls=0&#t=1m0s`}
+          // style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          allow="autoplay; fullscreen;"
+          width="100%" height="100%"
+          allowFullScreen
+          frameBorder="0"
+          loading="lazy"
+          marginHeight={0}
+          marginWidth={0}
+        ></iframe> */}

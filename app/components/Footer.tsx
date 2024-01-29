@@ -1,19 +1,25 @@
+'use client'
+import Link from "next/link";
+import { usePathname } from 'next/navigation'
+
 
 const Footer = () => {
+    const pathname = usePathname();
+
     return (
-        <footer>
-            {/* <div className="logo">
-                <img src="vercel.svg" alt="Logo" />
-            </div> */}
-        <div className="py-16 px-6 mx-auto container flex w-full items-center justify-between text-xl uppercase">
-                <a href="#" className="hover:text-black/80 transition-all">2024 © SIMO</a>
-                <a href="#" className="hover:text-black/80 transition-all">AWARDS</a>
-                <a href="#" className="hover:text-black/80 transition-all">MILANO - AMSTERDAM</a>
+        <footer className="flex px-10 z-10 mx-auto w-full py-8 items-center justify-between  text-xl uppercase">
+            <div className="w-1/2">
+                <Link href="/" className=" transition-all">
+                    {pathname === "/" ?
+                        <img src="/logo_white.png" alt="logo" className="w-24" />
+                        :
+                        <img src="/logo.png" alt="logo" className="w-24" />}
+                </Link>
             </div>
-            {/* <div className="newsletter">
-                <input type="email" placeholder="Enter your email" />
-                <button>Subscribe</button>
-            </div> */}
+            <div className="w-1/2 flex flex-col text-right sm:flex-row justify-around xl:justify-end">
+                <Link href="/" className={`font-bold transition-all ${pathname === "/" ? "hover:text-white/50  text-white" : "hover:text-black/50  text-black"}`}>instagram</Link>
+                <Link href="https://vimeo.com/yangdirector" className={`pl-4 font-bold transition-all ${pathname === "/" ? "hover:text-white/50  text-white" : "hover:text-black/50  text-black"}`}>vimeo</Link>
+            </div>
         </footer>
     );
 };
