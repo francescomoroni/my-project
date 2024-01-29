@@ -36,7 +36,7 @@ export default function Home() {
 
       {/* Video Centrale */}
       <div className="relative h-screen w-screen bg-gray-500">
-        <video onClick={nextSlide} autoPlay muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>
+        <video poster="/logo.png" onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>
       </div>
 
       {/* Titolo video */}
