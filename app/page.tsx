@@ -7,9 +7,24 @@ import Footer from "./components/Footer";
 export default function Home() {
 
   const videos = [
-    "titolo 1 video e descrizione",
-    "titolo 2 video e descrizione",
-    "titolo 3 video e descrizione",
+    {
+      id: 0,
+      srcVideo: "694426484",
+      title: "ROGER VIVIER // KALEIDOSHOC FT. CAMILLE RAZAT",
+      srcImg: "/logo.png"
+    },
+    {
+      id: 1,
+      srcVideo: "777528290",
+      title: "B&B ITALIA",
+      srcImg: "/logo.png"
+    },
+    {
+      id: 2,
+      srcVideo: "794204338",
+      title: "HIGH SNOBIETY X FENDI",
+      srcImg: "/logo.png"
+    },
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -17,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 6000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, []);
@@ -29,18 +44,22 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-
       <div className="fixed z-10 w-full">
         <Topbar />
       </div>
 
       {/* Video Centrale */}
-      <div className="relative h-screen w-screen bg-gray-500">
+      <div className="relative h-screen w-screen bg-gray-300">
         <video poster="/logo.png" onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>
-      </div>
+       {/* <iframe
+          title={videos[currentImageIndex].title}
+          src={`https://player.vimeo.com/video/${videos[currentImageIndex].srcVideo}?autoplay=1&loop=1&muted=1&controls=0&#t=0m0s&app_id=58479&quality=240p`}
+          style={{ position:"absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px" }}
+        ></iframe> */}
+      </div> 
 
       {/* Titolo video */}
-      <p onClick={nextSlide} className="fixed right-10 top-1/2 text-white text-2xl ">{videos[currentImageIndex]}</p>
+      <h1 onClick={nextSlide} className="fixed right-10 top-1/2 text-white text-2xl ">{videos[currentImageIndex].title}</h1>
 
       {/* Footer */}
       <div className="w-full fixed bottom-0">
@@ -52,15 +71,6 @@ export default function Home() {
 }
 
 
-{/* <iframe
-          title="Vimeo Video"
-          src={`https://player.vimeo.com/video/${videos[currentImageIndex]}?autoplay=1&loop=1&muted=1&controls=0&#t=1m0s`}
-          // style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          allow="autoplay; fullscreen;"
-          width="100%" height="100%"
-          allowFullScreen
-          frameBorder="0"
-          loading="lazy"
-          marginHeight={0}
-          marginWidth={0}
-        ></iframe> */}
+
+
+// <video poster="/logo.png" onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>

@@ -35,7 +35,7 @@ const Topbar = () => {
             {showMenu &&
                 <div className="md:hidden flex flex-col mx-10 py-8 items-center justify-between text-2xl uppercase space-y-6">
                     <Link href="/pages/works" className={`hover:${textColor}/80 transition-all ${textColor}`}>Works</Link>
-                    <Link href="/contacts" className={`hover:${textColor}/80 transition-all ${textColor}`}>Contacts</Link>
+                    <Link href="/pages/contacts" className={`hover:${textColor}/80 transition-all ${textColor}`}>Contacts</Link>
                     <Link href="/pages/about" className={`hover:${textColor}/80 transition-all ${textColor}`}>About</Link>
                 </div>
             }

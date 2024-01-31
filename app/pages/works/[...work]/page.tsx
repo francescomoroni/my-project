@@ -10,18 +10,39 @@ import "yet-another-react-lightbox/styles.css";
 
 export default function Page({ params }: { params: { work: string[] } }) {
     const [work, setWork] = useState({} as any);
-    const [medias, setMedias] = useState([] as any);
-    const [open, setOpen] = useState(false);
+    const [photogallery, setPhotogallery] = useState([] as any);
+    const [videogallery, setVideogallery] = useState([] as any);
+    const [openPhotogallery, setOpenPhotogallery] = useState(false);
+    const [openVideogallery, setOpenVideogallery] = useState(false);
+
 
     useEffect(() => {
         const dbLavori = [
             {
                 id: "Kaleidoshoc",
-                titolo: "Kaleidoshoc",
+                title: "Kaleidoshoc",
                 autore: "ROGER VIVIER",
-                srcVideoPrincipale: "/0.mp4",
+                //src: "/0.mp4",
+                src: "694426484",
                 descrizione: "EMBARK ON A CINEMATIC JOURNEY WITH ROGER VIVIER'S 'KALEIDOSHOCK', DRAWING INSPIRATION FROM KINETIC ART AND CLUZOT'S CINEMA. ACTRESS CAMILLE RAZAT UNVEILS THE VIV' CHOC COLLECTION, WITH MESMERIZING LIGHT PLAY AND KALEIDOSCOPIC REFLECTIONS SHOWCASING THE BAG'S EVER-CHANGING PATTERNS. EXPERIENCE CRAFTSMANSHIP AND CREATIVITY IN A VISUAL SPECTACLE.",
-                medias: [
+                videoGallery: [
+                    {
+                        id: '1',
+                        src: '694426484',
+                        titolo: "ROGER VIVIER // KALEIDOSHOC FT. CAMILLE RAZAT",
+                    },
+                    {
+                        id: '1',
+                        src: '777528290',
+                        titolo: "B&B ITALIA",
+                    },
+                    {
+                        id: '1',
+                        src: '794204338',
+                        titolo: "HIGH SNOBIETY X FENDI",
+                    },
+                ],
+                photogallery: [
                     {
                         id: "1",
                         src: "/Kaleidoshoc/Kaleidoshoc (1).jpeg",
@@ -136,11 +157,28 @@ export default function Page({ params }: { params: { work: string[] } }) {
             },
             {
                 id: "SNOBIETY",
-                titolo: "FENDI X HIGH SNOBIETY",
+                title: "FENDI X HIGH SNOBIETY",
                 autore: "Ryuij Imaichi",
-                srcVideoPrincipale: "/0.mp4",
+                src: "/0.mp4",
                 descrizione: "",
-                medias: [
+                videoGallery: [
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                ],
+                photogallery: [
                     {
                         id: "1",
                         src: "/Snobiety/Snobiety (1).jpg",
@@ -234,11 +272,28 @@ export default function Page({ params }: { params: { work: string[] } }) {
             },
             {
                 id: "empty",
-                titolo: "",
+                title: "",
                 autore: "",
-                srcVideoPrincipale: "",
+                src: "",
                 descrizione: "",
-                medias: [
+                videoGallery: [
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                    {
+                        id: '1',
+                        src: '',
+                        titolo: ''
+                    },
+                ],
+                photogallery: [
                     {
                         id: "1",
                         src: "",
@@ -299,12 +354,23 @@ export default function Page({ params }: { params: { work: string[] } }) {
         ];
         const workFound = dbLavori.find((lavoro) => lavoro.id === params.work[1]);
         setWork(workFound);
-        const _medias = workFound!.medias.map((media: any) => ({src:media.src}));
-        setMedias(_medias);
+        const _photogallery = workFound!.photogallery.map((media: any) => ({ src: media.src }));
+        setPhotogallery(_photogallery);
     }, [params.work]);
 
     return (
         <>
+            <Lightbox
+                open={openPhotogallery}
+                close={() => setOpenPhotogallery(false)}
+                slides={photogallery}
+            />
+             <Lightbox
+                open={openVideogallery}
+                close={() => setOpenVideogallery(false)}
+                slides={videogallery}
+            />
+
             {!work && (<div className="flex items-center justify-center text-3xl grow">
                 <div className="text-center">
                     <p>Sorry, page not found</p>
@@ -315,31 +381,48 @@ export default function Page({ params }: { params: { work: string[] } }) {
 
             {work && (
                 <div className="m-6 space-y-8">
-                    <p className="text-lg font-bold sm:text-xl">{work.titolo}</p>
-                    <p className="text-lg sm:text-xl">{work.autore}</p>
-                    <video className="w-1/2" src={work.srcVideoPrincipale} controls ></video>
-                    <p className="font-bold leading-relaxed">{work.descrizione}</p>
+                    <h2 className="text-lg font-bold sm:text-xl">{work.title}</h2>
+                    <h2 className="text-lg sm:text-xl">{work.autore}</h2>
+                    {/* <video className="w-1/2" src={work.src} controls ></video> */}
+                    <div className="relative w-full min-h-[24rem] md:min-h-[36rem]">
+                        <iframe
+                            title={work.title}
+                            src={`https://player.vimeo.com/video/${work.src}?controls=1&app_id=58479`}
+                            style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px" }}
+                        ></iframe>
+                    </div>
+                    <h3 className="font-bold leading-relaxed">{work.descrizione}</h3>
+                    {/* PhotoGallery */}
                     <div className="grid grid-cols-3 gap-10 mx-auto">
-                        {work.medias && (work.medias.map((media: any, key: number) => (
+                        {work.photogallery && (work.photogallery.map((media: any, key: number) => (
                             <div key={key} className="relative mx-auto bg-red-500 h-[350px] w-full">
                                 {media.tipo === "img" && (
-                                    <Image fill={true} objectFit="cover" onClick={() => setOpen(!open)}  src={media.src} alt="" />
+                                    <Image fill={true} objectFit="cover" onClick={() => setOpenPhotogallery(!openPhotogallery)} src={media.src} alt="" />
                                 )}
-                                {/* className="object-cover w-full" */}
-                                {media.tipo === "video" && (
+                                {/* {media.tipo === "video" && (
                                     <video className="object-cover w-full" src={media.src} controls ></video>
-                                )}
+                                )} */}
                             </div>
                         )))}
                     </div>
 
-                    <Lightbox
-                        open={open}
-                        close={() => setOpen(false)}
-                        slides={medias}
-                    />
+                    {/* VideoGallery */}
+                    <div className="grid grid-cols-3 gap-10 mx-auto">
+                        {work.videoGallery && (work.videoGallery.map((media: any, key: number) => (
+                            <div onClick={() => setOpenVideogallery(!openVideogallery)} key={key} className="relative mx-auto bg-red-500 h-[350px] w-full">
+                                <iframe
+                                    title={media.title}
+                                    src={`https://player.vimeo.com/video/${media.src}?autoplay=0&loop=1&muted=1&controls=0&#t=0m0s&app_id=58479&quality=240p`}
+                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                ></iframe>
 
-                    <p className="font-bold">{work.titolo + " / "} <span className="font-normal">{work.autore}</span></p>
+                            </div>
+                        )))}
+                    </div>
+
+
+
+                    <h4 className="font-bold">{work.title + " / "} <span className="font-normal">{work.autore}</span></h4>
                     <div className="pt-4">
                         {work.credits && (work.credits.map((credit: any, key: number) => (
                             <p className="" key={key}>{credit.nome + " - "}
