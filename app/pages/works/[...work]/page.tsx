@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import {dbLavori} from "../../../data/data";
+import {works} from "../../../data/data";
 
 
 export default function Page({ params }: { params: { work: string[] } }) {
@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { work: string[] } }) {
 
     useEffect(() => {
 
-        const workFound = dbLavori.find((lavoro) => lavoro.id === params.work[1]);
+        const workFound = works.find((lavoro) => lavoro.id === params.work[1]);
         setWork(workFound);
         const _photogallery = workFound!.photogallery.map((media: any) => ({ src: media.src }));
         setPhotogallery(_photogallery);
@@ -53,20 +53,20 @@ export default function Page({ params }: { params: { work: string[] } }) {
                     <div className="relative w-full min-h-[24rem] md:min-h-[36rem]">
                         <iframe
                             title={work.title}
-                            src={`https://player.vimeo.com/video/${work.src}?controls=1&app_id=58479`}
+                            src={`https://player.vimeo.com/video/${work.srcVideoPrincipaleWork}?controls=1&app_id=58479`}
                             style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px" }}
                         ></iframe>
                     </div>
                     <h3 className="font-bold leading-relaxed">{work.descrizione}</h3>
                     {/* PhotoGallery */}
                     <div className="grid grid-cols-3 gap-10 mx-auto">
-                        {work.photogallery && (work.photogallery.map((media: any, key: number) => (
+                        {work.photogallery && (work.photogallery.map((photo: any, key: number) => (
                             <div key={key} className="relative mx-auto shadow-xl h-[350px] w-full">
-                                {media.tipo === "img" && (
-                                    <Image fill={true} objectFit="cover" onClick={() => setOpenPhotogallery(!openPhotogallery)} src={media.src} alt="" />
+                                {photo.tipo === "img" && (
+                                    <Image fill={true} objectFit="cover" onClick={() => setOpenPhotogallery(!openPhotogallery)} src={photo.src} alt={photo.title} />
                                 )}
-                                {/* {media.tipo === "video" && (
-                                    <video className="object-cover w-full" src={media.src} controls ></video>
+                                {/* {photo.tipo === "video" && (
+                                    <video className="object-cover w-full" src={photo.src} controls ></video>
                                 )} */}
                             </div>
                         )))}
@@ -74,11 +74,11 @@ export default function Page({ params }: { params: { work: string[] } }) {
 
                     {/* VideoGallery */}
                     <div className="grid grid-cols-3 gap-10 mx-auto">
-                        {work.videoGallery && (work.videoGallery.map((media: any, key: number) => (
+                        {work.videoGallery && (work.videoGallery.map((video: any, key: number) => (
                             <div key={key} className="relative mx-auto  h-[350px] w-full">
                                 <iframe
-                                    title={media.title}
-                                    src={`https://player.vimeo.com/video/${media.src}?autoplay=0&loop=1&muted=1&controls=1&#t=0m0s&app_id=58479&quality=240p`}
+                                    title={video.title}
+                                    src={`https://player.vimeo.com/video/${video.src}?autoplay=0&loop=1&muted=1&controls=1&#t=0m0s&app_id=58479&quality=240p`}
                                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                 ></iframe>
 
