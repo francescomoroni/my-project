@@ -19,7 +19,7 @@ export default function Home() {
                 blurDataURL={work.srcWorkPageImg}
                 src={work.srcWorkPageImg}
                 alt={work.titleWorkPage} />
-              <h1 className="group-hover:line-through transition-all duration-300 ease-in-out transform pt-8 pl-2 absolute uppercase cursor-pointer text-lg md:text-xl ">{work.titleWorkPage}</h1>
+              <h1 className="group-hover:line-through transition-all duration-300 ease-in-out transform pt-8 pl-2 absolute uppercase cursor-pointer sm:text-lg md:text-xl ">{work.titleWorkPage}</h1>
             </Link>
           )
         }
