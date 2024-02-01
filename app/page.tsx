@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Topbar from "./components/Topbar";
 import Footer from "./components/Footer";
 import { homepage } from "./data/data";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -11,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % homepage.length);
-    }, 100000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,13 +29,15 @@ export default function Home() {
       </div>
 
       {/* Video Centrale */}
-      <div className="relative h-screen w-screen bg-gray-300 overflow-hidden">
-        <video poster="/logo.png" onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.mp4`} className="w-full h-full object-cover"></video>
+      <div className="relative h-screen w-screen bg-black overflow-hidden cursor-pointer">
+        {/* <video onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.webp`} className="w-full h-full object-cover"></video> */}
+        <Image alt="" fill={true} onClick={nextSlide} className="object-cover"  src={`/${currentImageIndex}.webp`} ></Image>
+      
       </div>
 
 
       {/* Titolo video */}
-      <h1 onClick={nextSlide} className="fixed right-10 top-1/2 text-white text-2xl ">{homepage[currentImageIndex].title}</h1>
+      <h1 onClick={nextSlide} className="fixed right-10 top-1/2 text-white hover:text-white/80 hover:line-through uppercase text-2xl ">{homepage[currentImageIndex].title}</h1>
 
       {/* Footer */}
       <div className="w-full fixed bottom-0">

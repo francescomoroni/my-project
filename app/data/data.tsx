@@ -25,7 +25,8 @@ export const homepage = [
 
 export const works = [
     {
-        id: "Kaleidoshoc",
+        id: 0,
+        linkPage: "Kaleidoshoc",
         titleWorkPage: "Kaleidoshoc",
         srcWorkPageImg: "/Kaleidoshoc/Kaleidoshoc (1).jpeg",
         title: "Kaleidoshoc",
@@ -161,7 +162,8 @@ export const works = [
         ]
     },
     {
-        id: "SNOBIETY",
+        id: 1,
+        linkPage: "SNOBIETY",
         titleWorkPage: "FENDI X HIGH SNOBIETY",
         srcWorkPageImg: "/Snobiety/Snobiety (1).gif",
         title: "FENDI X HIGH SNOBIETY",
@@ -255,7 +257,8 @@ export const works = [
 
     },
     {
-        id: "bbItalia",
+        id: 2,
+        linkPage: "bbItalia",
         titleWorkPage: "B&B ITALIA",
         srcWorkPageImg: "/bbItalia/bb (1).png",
         title: "B&B ITALIA",
@@ -349,7 +352,8 @@ export const works = [
 
     },
     {
-        id: "bbItaliaOutdoor",
+        id: 3,
+        linkPage: "bbItaliaOutdoor",
         titleWorkPage: "B&B ITALIA",
         srcWorkPageImg: "/bbOutdoor/bbOutdoor (1).png",
         title: "B&B ITALIA",
@@ -459,7 +463,8 @@ export const works = [
 
     },
     {
-        id: "Soul_Twins",
+        id: 4,
+        linkPage: "Soul_Twins",
         titleWorkPage: "SOUL TWINS",
         srcWorkPageImg: "/soul_twins/soul (1).jpg",
         title: "SOUL TWINS",

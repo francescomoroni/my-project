@@ -5,9 +5,9 @@ import Image from "next/image";
 export default function AboutPage() {
     return (
         <div className="pb-40 space-y-8 container mx-auto text-justify">
-            <div className="">
+            {/* <div className="">
                 <Link href="/pages/works" className="hover:underline font-Nunito">⬅ Back to works </Link>
-            </div>
+            </div> */}
             {/* Nunito: ["Nunito Sans", "sans-serif"],
         Caslon: ["Libre Caslon Text", "serif"],
         Lusitana: ["Lusitana", "serif"], */}

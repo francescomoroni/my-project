@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
@@ -11,14 +12,14 @@ const Footer = () => {
             <div className="w-1/2">
                 <Link href="/" className=" transition-all">
                     {pathname === "/" ?
-                        <img src="/logo_white.png" alt="logo" className="w-24" />
-                        :
-                        <img src="/logo.png" alt="logo" className="w-24" />}
+                         <Image width={100} height={100} src="/logo_white.png" alt="logo" className="w-24" />
+                         :
+                         <Image width={100} height={100} src="/logo.png" alt="logo" className="w-24" />}
                 </Link>
             </div>
             <div className="w-1/2 flex flex-col text-right sm:flex-row justify-around xl:justify-end">
-                <Link href="/" className={`font-bold transition-all ${pathname === "/" ? "hover:text-white/50  text-white" : "hover:text-black/50  text-black"}`}>instagram</Link>
-                <Link href="https://vimeo.com/yangdirector" className={`pl-4 font-bold transition-all ${pathname === "/" ? "hover:text-white/50  text-white" : "hover:text-black/50  text-black"}`}>vimeo</Link>
+                <Link href="/" className={` transition-all ${pathname === "/" ? "hover:text-white/80 hover:line-through  text-white" : " hover:line-through text-black"}`}>instagram</Link>
+                <Link href="https://vimeo.com/yangdirector" className={`pl-4  transition-all ${pathname === "/" ? "hover:text-white/80 hover:line-through  text-white" : " hover:line-through text-black"}`}>vimeo</Link>
             </div>
         </footer>
     );

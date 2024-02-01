@@ -7,24 +7,19 @@ export default function Home() {
 
   return (
     <>
-      <div className="pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:gap-20 my-8 mx-4 sm:mx-8">
+      <div className="pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 xl:gap-x-20 xl:gap-y-32 my-8 mx-4 sm:mx-8">
         {works.map((work, key) => {
           return (
 
-            <Link href={`/pages/works/work/${work.id}`} key={key} className="relative mx-auto h-[30rem] xl:h-[36rem] w-full group ">
+            <Link href={`/pages/works/work/${work.id}`} key={key} className="relative mx-auto h-[18rem] xl:h-[24rem] w-full group ">
               <Image
-                // fill={true}
-                // objectFit="cover"
-                className="w-full h-full object-cover shadow-2xl group-hover:shadow-3xl transition duration-300 ease-in-out transform group-hover:scale-[1.01]"
-                sizes="(max-width: 640px) 100vw,
-                (max-width: 1024px) 50vw,
-                33vw"
-                width={200}
-                height={200}
+                className="w-full h-full object-cover shadow-2xl group-hover:shadow-3xl transition duration-300 ease-in-out transform "
+                width={800}
+                height={800}
                 blurDataURL={work.srcWorkPageImg}
                 src={work.srcWorkPageImg}
                 alt={work.titleWorkPage} />
-              <p className="group-hover:pl-6 transition-all duration-300 ease-in-out transform pt-4 pl-4 absolute uppercase cursor-pointer md:text-xl ">{work.titleWorkPage}</p>
+              <h1 className="group-hover:line-through transition-all duration-300 ease-in-out transform pt-8 pl-2 absolute uppercase cursor-pointer text-lg md:text-xl ">{work.titleWorkPage}</h1>
             </Link>
           )
         }

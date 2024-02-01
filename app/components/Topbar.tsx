@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from 'next/navigation'
+import Image from "next/image";
 
 
 const Topbar = () => {
@@ -24,9 +25,9 @@ const Topbar = () => {
                 <div className="w-1/2 flex justify-end">
                 <Link href="/" className=" transition-all">
                     {pathname === "/" ?
-                        <img src="/logo_white.png" alt="logo" className="w-24" />
+                        <Image width={100} height={100} src="/logo_white.png" alt="logo" className="w-24" />
                         :
-                        <img src="/logo.png" alt="logo" className="w-24" />}
+                        <Image width={100} height={100} src="/logo.png" alt="logo" className="w-24" />}
                 </Link>
             </div>
                 
@@ -34,18 +35,18 @@ const Topbar = () => {
 
             {showMenu &&
                 <div className="md:hidden flex flex-col mx-10 py-8 items-center justify-between text-2xl uppercase space-y-6">
-                    <Link href="/pages/works" className={`hover:${textColor}/80 transition-all ${textColor}`}>Works</Link>
-                    <Link href="/pages/contacts" className={`hover:${textColor}/80 transition-all ${textColor}`}>Contacts</Link>
-                    <Link href="/pages/about" className={`hover:${textColor}/80 transition-all ${textColor}`}>About</Link>
+                    <Link href="/pages/works" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>Works</Link>
+                    <Link href="/pages/contacts" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>Contacts</Link>
+                    <Link href="/pages/about" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>About</Link>
                 </div>
             }
 
             {/* Desktop */}
-            <div className="hidden md:flex px-10 z-10 w-1/2 py-8 items-center justify-between text-xl uppercase">
-                <Link href="/" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Home</Link>
-                <Link href="/pages/works" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Works</Link>
-                <Link href="/pages/contacts" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>Contacts</Link>
-                <Link href="/pages/about" className={`hover:${textColor}/80 hover:font-bold transition-all ${textColor}`}>About</Link>
+            <div className="hidden md:flex px-10 z-10 w-1/2 py-8 items-center justify-between text-xl md:text-2xl uppercase">
+                <Link href="/" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>Home</Link>
+                <Link href="/pages/works" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>Works</Link>
+                <Link href="/pages/contacts" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>Contacts</Link>
+                <Link href="/pages/about" className={`hover:${textColor}/80 hover:line-through transition-all ${textColor}`}>About</Link>
             </div>
         </>
     );
