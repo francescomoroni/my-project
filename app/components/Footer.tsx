@@ -7,7 +7,7 @@ const Footer = () => {
     const pathname = usePathname();
 
     return (
-        <footer className="flex px-10 z-10 mx-auto w-full py-8 items-center justify-between  text-xl uppercase">
+        <footer className="absolute bottom-0 flex px-10 z-10 mx-auto w-full py-8 items-center justify-between  text-xl uppercase">
             <div className="w-1/2">
                 <Link href="/" className=" transition-all">
                     {pathname === "/" ?

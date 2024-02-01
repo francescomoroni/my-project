@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:gap-20 my-8 mx-4 sm:mx-8">
+      <div className="pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:gap-20 my-8 mx-4 sm:mx-8">
         {works.map((work, key) => {
           return (
 
