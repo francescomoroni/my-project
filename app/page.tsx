@@ -36,7 +36,7 @@ export default function Home() {
 
 
       {/* Titolo video */}
-      <h1 onClick={nextSlide} className="fixed right-6 top-1/3 text-right sm:right-10 sm:top-1/2 text-white hover:text-white/80 hover:line-through uppercase sm:text-2xl ">{homepage[currentImageIndex].title}</h1>
+      <h1 onClick={nextSlide} className="fixed right-6 top-1/3 text-right sm:right-10 sm:top-1/2 text-white hover:text-white/80 hover:line-through cursor-pointer uppercase sm:text-2xl ">{homepage[currentImageIndex].title}</h1>
 
       {/* Footer */}
       <div className="w-full fixed bottom-0">
