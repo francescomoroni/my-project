@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <footer className="absolute bottom-0 flex px-10 z-10 mx-auto w-full py-8 items-center justify-between  sm:text-xl uppercase">
             <div className="w-1/2">
-                <Link href="/" className=" transition-all">
+                <Link href="/" className=" transition-all hidden sm:block">
                     {pathname === "/" ?
                          <Image width={100} height={100} src="/logo_white.png" alt="logo" className="w-24" />
                          :

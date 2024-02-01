@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { work: string[] } }) {
                 close={() => setOpenPhotogallery(false)}
                 slides={photogallery}
                 plugins={[Thumbnails]}
-                thumbnails={{width: 200, height: 200, borderColor: "black"}}
+                thumbnails={{ width: 200, height: 200, borderColor: "black" }}
             />
             {/* <Lightbox
                 open={openVideogallery}
@@ -54,13 +54,13 @@ export default function Page({ params }: { params: { work: string[] } }) {
             </div>)}
 
             {works[work.id - 1] && (
-                <Link href={`/pages/works/work/${works[work.id - 1].linkPage}`} className="hidden sm:block fixed z-10 hover:line-through uppercase -rotate-90 top-1/2  -translate-y-1/2 text-lg">
+                <Link href={`/pages/works/work/${works[work.id - 1].linkPage}`} className="p-1 hidden sm:block fixed z-10 hover:line-through uppercase -rotate-90 top-1/2  -translate-y-1/2 text-lg">
                     {works[work.id - 1].title}
                 </Link>
             )}
 
             {works[work.id + 1] && (
-                <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="hidden sm:block fixed z-10 hover:line-through rotate-90 uppercase  top-1/2 right-2 -translate-y-1/2 text-lg ">
+                <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="p-1 hidden sm:block fixed z-10 hover:line-through rotate-90 uppercase  top-1/2 right-2  -translate-y-1/2 text-lg ">
                     {works[work.id + 1].title}
                 </Link>
             )}
@@ -89,7 +89,9 @@ export default function Page({ params }: { params: { work: string[] } }) {
                     <div className="pt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mx-auto">
                         {work.photogallery && (work.photogallery.map((photo: any, key: number) => (
                             <div key={key} className="relative mx-auto shadow-xl h-[16rem] w-full">
-                                <Image fill={true} className="object-cover cursor-pointer" onClick={() => setOpenPhotogallery(!openPhotogallery)} src={photo.src} alt={photo.title} />
+                                <Image
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1000px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                                    fill={true} className="object-cover cursor-pointer" onClick={() => setOpenPhotogallery(!openPhotogallery)} src={photo.src} alt={photo.title} />
                             </div>
                         )))}
                     </div>
@@ -117,19 +119,19 @@ export default function Page({ params }: { params: { work: string[] } }) {
                         )))}
                     </div>
 
-<div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center">
 
-                    {works[work.id - 1] && (
-                        <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-left">
-                            ⬅ {works[work.id - 1].title}
-                        </Link>
-                    )}
+                        {works[work.id - 1] && (
+                            <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-left">
+                                ⬅ {works[work.id - 1].title}
+                            </Link>
+                        )}
 
-                    {works[work.id + 1] && (
-                        <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-right">
-                             {works[work.id + 1].title} ⮕
-                        </Link>
-                    )}
+                        {works[work.id + 1] && (
+                            <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-right">
+                                {works[work.id + 1].title} ⮕
+                            </Link>
+                        )}
                     </div>
                 </div>
             )}
