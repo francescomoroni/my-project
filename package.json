@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "@mux/mux-player": "^2.3.2",
+    "@mux/mux-player-react": "^2.3.2",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

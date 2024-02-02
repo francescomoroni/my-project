@@ -4,6 +4,8 @@ import Topbar from "./components/Topbar";
 import Footer from "./components/Footer";
 import { homepage } from "./data/data";
 import Image from "next/image";
+import MuxPlayer from '@mux/mux-player-react';
+
 
 export default function Home() {
 
@@ -30,8 +32,24 @@ export default function Home() {
 
       {/* Video Centrale */}
       <div className="relative h-screen w-screen bg-black overflow-hidden cursor-pointer">
-        {/* <video onClick={nextSlide} autoPlay loop muted playsInline src={`${currentImageIndex}.webp`} className="w-full h-full object-cover"></video> */}
-        <Image alt="" fill={true} onClick={nextSlide} className="object-cover"  src={`/${currentImageIndex}.webp`} ></Image>
+        <video autoPlay loop muted playsInline src="video.mp4" className="w-full h-full object-cover"></video>
+        
+        {/* <Image alt="" fill={true} onClick={nextSlide} className="object-cover"  src={`/${currentImageIndex}.webp`} ></Image> */}
+        
+        {/* <MuxPlayer
+          streamType="on-demand"
+          playbackId="wtcsOwZ3kuakwsJxOYl402tagjgI7ifNNLK100ZxCHTrI"
+          metadataVideoTitle="Placeholder (optional)"
+          metadataViewerUserId="Placeholder (optional)"
+          primaryColor="#FFFFFF"
+          secondaryColor="#000000"
+          metadata={{
+            video_id: "video-id-54321",
+            video_title: "Test video title",
+            viewer_user_id: "user-id-007",
+          }}
+          style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px" }}
+        /> */}
       </div>
 
 
