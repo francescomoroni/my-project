@@ -56,6 +56,10 @@ export default function Home() {
 					playsInline
 					className={`object-cover w-full h-full ${currentIndex !== 1 ? 'hidden' : ''
 						}`}
+						onLoadedData={()=>{console.log("loaded1")}}
+						poster='/bbItalia/bb (1).png'
+
+
 				></video>
 
 				{isLoaded ? (
@@ -68,6 +72,8 @@ export default function Home() {
 							playsInline
 							className={`object-cover w-full h-full ${currentIndex !== 2 ? 'hidden' : ''
 								}`}
+								onLoadedData={()=>{console.log("loaded2")}}
+							poster='/bbItalia/bb (1).png'
 						></video>
 
 						<video
@@ -78,6 +84,9 @@ export default function Home() {
 							playsInline
 							className={`object-cover w-full h-full ${currentIndex !== 3 ? 'hidden' : ''
 								}`}
+								onLoadedData={()=>{console.log("loaded3")}}
+								poster='/bbItalia/bb (1).png'
+
 						></video>
 					</>
 				) : null}
