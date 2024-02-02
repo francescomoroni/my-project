@@ -30,8 +30,9 @@ export default function Home() {
 	}, []);
 
 	const nextSlide = () => {
-		setCurrentImageIndex((prevIndex) => (prevIndex + 1) % homepage.length);
-	};
+		setCurrentIndex(((currentIndex + 1) % 3) + 1)
+	}
+
 
 	return (
 		<>
@@ -45,7 +46,7 @@ export default function Home() {
 				onClick={() => setCurrentIndex(((currentIndex + 1) % 3) + 1)}
 				className='relative w-screen h-screen overflow-hidden bg-black cursor-pointer'
 			>
-				<div className='absolute inset-0 bg-black/40'></div>
+				<div className='absolute inset-0 bg-black/30'></div>
 
 				<video
 					src='video.mp4'
@@ -53,9 +54,8 @@ export default function Home() {
 					loop
 					muted
 					playsInline
-					className={`object-cover w-full h-full ${
-						currentIndex !== 1 ? 'hidden' : ''
-					}`}
+					className={`object-cover w-full h-full ${currentIndex !== 1 ? 'hidden' : ''
+						}`}
 				></video>
 
 				{isLoaded ? (
@@ -66,9 +66,8 @@ export default function Home() {
 							loop
 							muted
 							playsInline
-							className={`object-cover w-full h-full ${
-								currentIndex !== 2 ? 'hidden' : ''
-							}`}
+							className={`object-cover w-full h-full ${currentIndex !== 2 ? 'hidden' : ''
+								}`}
 						></video>
 
 						<video
@@ -77,48 +76,21 @@ export default function Home() {
 							loop
 							muted
 							playsInline
-							className={`object-cover w-full h-full ${
-								currentIndex !== 3 ? 'hidden' : ''
-							}`}
+							className={`object-cover w-full h-full ${currentIndex !== 3 ? 'hidden' : ''
+								}`}
 						></video>
 					</>
 				) : null}
 
-				{/* <video
-					autoPlay
-					loop
-					preload='none'
-					muted
-					playsInline
-					src='video2.mp4'
-					className='object-cover w-full h-full'
-				></video> */}
 
-				{/* <Image alt="" fill={true} onClick={nextSlide} className="object-cover"  src={`/${currentImageIndex}.webp`} ></Image> */}
-
-				{/* <MuxPlayer
-					streamType='on-demand'
-					playbackId='wtcsOwZ3kuakwsJxOYl402tagjgI7ifNNLK100ZxCHTrI'
-					metadataVideoTitle='Placeholder (optional)'
-					metadataViewerUserId='Placeholder (optional)'
-					primaryColor='#FFFFFF'
-					secondaryColor='#000000'
-					className='object-cover w-full h-full'
-					metadata={{
-						video_id: 'video-id-54321',
-						video_title: 'Test video title',
-						viewer_user_id: 'user-id-007',
-					}}
-					style={{}}
-				/> */}
 			</div>
 
 			{/* Titolo video */}
 			<h1
 				onClick={nextSlide}
-				className='fixed text-right text-white uppercase right-6 bottom-1/3 sm:right-10 sm:top-1/2 hover:text-white/80 sm:text-2xl '
+				className='fixed cursor-pointer text-right text-white uppercase right-6 bottom-1/3 sm:right-10 sm:top-1/2  sm:text-2xl '
 			>
-				{homepage[currentImageIndex].title}
+				{homepage[currentIndex - 1].title}
 			</h1>
 
 			{/* Footer */}
@@ -136,16 +108,44 @@ export default function Home() {
 
 {
 	/*<iframe
-          onClick={nextSlide}
-          title={homepage[currentImageIndex].title}
-          src={`https://player.vimeo.com/video/${homepage[currentImageIndex].srcVideo}?autoplay=1&loop=1&muted=1&controls=0&#t=0m0s&app_id=58479&quality=240p`}
-          style={{ position:"absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px", border: "none"}}
-          width={"100%"} height={"100%"} frameBorder="0"
-        ></iframe>*/
+		  onClick={nextSlide}
+		  title={homepage[currentImageIndex].title}
+		  src={`https://player.vimeo.com/video/${homepage[currentImageIndex].srcVideo}?autoplay=1&loop=1&muted=1&controls=0&#t=0m0s&app_id=58479&quality=240p`}
+		  style={{ position:"absolute", width: "100%", height: "100%", objectFit: "cover", inset: "0px", border: "none"}}
+		  width={"100%"} height={"100%"} frameBorder="0"
+		></iframe>*/
 }
 
 {
 	/* <div className="relative h-screen w-screen bg-gray-300 overflow-hidden bg-[url('https://player.vimeo.com/video/694426484?background=1&app_id=58479')]">
 
-      </div>  */
+	  </div>  */
 }
+
+{/* <video
+					autoPlay
+					loop
+					preload='none'
+					muted
+					playsInline
+					src='video2.mp4'
+					className='object-cover w-full h-full'
+				></video> */}
+
+{/* <Image alt="" fill={true} onClick={nextSlide} className="object-cover"  src={`/${currentImageIndex}.webp`} ></Image> */ }
+
+{/* <MuxPlayer
+					streamType='on-demand'
+					playbackId='wtcsOwZ3kuakwsJxOYl402tagjgI7ifNNLK100ZxCHTrI'
+					metadataVideoTitle='Placeholder (optional)'
+					metadataViewerUserId='Placeholder (optional)'
+					primaryColor='#FFFFFF'
+					secondaryColor='#000000'
+					className='object-cover w-full h-full'
+					metadata={{
+						video_id: 'video-id-54321',
+						video_title: 'Test video title',
+						viewer_user_id: 'user-id-007',
+					}}
+					style={{}}
+				/> */}

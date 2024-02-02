@@ -122,7 +122,7 @@ export default function Page({ params }: { params: { work: string[] } }) {
                     <div className="flex justify-between items-center">
 
                         {works[work.id - 1] && (
-                            <Link href={`/pages/works/work/${works[work.id + 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-left">
+                            <Link href={`/pages/works/work/${works[work.id - 1].linkPage}`} className="sm:hidden block z-10 hover:line-through uppercase text-lg text-left">
                                 ⬅ {works[work.id - 1].title}
                             </Link>
                         )}
