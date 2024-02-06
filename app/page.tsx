@@ -5,13 +5,15 @@ import Topbar from './components/Topbar';
 import { homepage } from './data/data';
 
 export default function Home() {
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-	//indice del video corrente che sta playando
-	const [currentIndex, setCurrentIndex] = useState(1);
 	// quando il primo video si è caricato
 	// carica anche gli altri N video
+	
+	//indice del video corrente che sta playando
+	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -20,19 +22,30 @@ export default function Home() {
 	}, []);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentImageIndex(
-				(prevIndex) => (prevIndex + 1) % homepage.length,
-			);
-		}, 8000);
+		const id = setInterval(() => {
+			setCurrentIndex((prevIndex) => (prevIndex + 1) % homepage.length);
+		}, 3000);
 
-		return () => clearInterval(interval);
+		setIntervalId(id);
+
+		return () => {
+			clearInterval(id);
+		};
 	}, []);
 
 	const nextSlide = () => {
-		setCurrentIndex(((currentIndex + 1) % 3) + 1)
-	}
-
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % homepage.length);
+		
+		if (intervalId) {
+		  clearInterval(intervalId);
+		  
+		  const newIntervalId = setInterval(() => {
+			setCurrentIndex((prevIndex) => (prevIndex + 1) % homepage.length);
+		  }, 3000);
+	  
+		  setIntervalId(newIntervalId);
+		}
+	  };
 
 	return (
 		<>
@@ -43,7 +56,7 @@ export default function Home() {
 
 			{/* Video Centrale */}
 			<div
-				onClick={() => setCurrentIndex(((currentIndex + 1) % 3) + 1)}
+				onClick={nextSlide}
 				className='relative w-screen h-screen overflow-hidden bg-black cursor-pointer'
 			>
 				<div className='absolute inset-0 bg-black/30'></div>
@@ -54,12 +67,9 @@ export default function Home() {
 					loop
 					muted
 					playsInline
-					className={`object-cover w-full h-full ${currentIndex !== 1 ? 'hidden' : ''
+					className={`object-cover w-full h-full ${currentIndex !== 0 ? 'hidden' : ''
 						}`}
-						onLoadedData={()=>{console.log("loaded1")}}
-						poster='/bbItalia/bb (1).png'
-
-
+					poster='/bbItalia/bb (1).png'
 				></video>
 
 				{isLoaded ? (
@@ -70,9 +80,8 @@ export default function Home() {
 							loop
 							muted
 							playsInline
-							className={`object-cover w-full h-full ${currentIndex !== 2 ? 'hidden' : ''
+							className={`object-cover w-full h-full ${currentIndex !== 1 ? 'hidden' : ''
 								}`}
-								onLoadedData={()=>{console.log("loaded2")}}
 							poster='/bbItalia/bb (1).png'
 						></video>
 
@@ -82,11 +91,9 @@ export default function Home() {
 							loop
 							muted
 							playsInline
-							className={`object-cover w-full h-full ${currentIndex !== 3 ? 'hidden' : ''
+							className={`object-cover w-full h-full ${currentIndex !== 2 ? 'hidden' : ''
 								}`}
-								onLoadedData={()=>{console.log("loaded3")}}
-								poster='/bbItalia/bb (1).png'
-
+							poster='/bbItalia/bb (1).png'
 						></video>
 					</>
 				) : null}
@@ -95,11 +102,17 @@ export default function Home() {
 			</div>
 
 			{/* Titolo video */}
-			<h1
+			{/* <h1
 				onClick={nextSlide}
 				className='fixed cursor-pointer text-right text-white uppercase right-6 bottom-1/3 sm:right-10 sm:top-1/2  sm:text-2xl '
 			>
 				{homepage[currentIndex - 1].title}
+			</h1> */}
+			<h1
+				onClick={nextSlide}
+				className='fixed cursor-pointer text-right text-white uppercase right-1/2 bottom-1/2 sm:right-10 sm:top-1/2  sm:text-2xl '
+			>
+				Titolo video: {currentIndex}
 			</h1>
 
 			{/* Footer */}
